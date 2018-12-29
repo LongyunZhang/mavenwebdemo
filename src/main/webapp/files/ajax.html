@@ -1,0 +1,130 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>修改代码，右边会自动显示结果</title>
+    <!--适应移动端-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--css样式-->
+    <style>
+        body{background-color: #EBEBEB}
+        .aaa{background-color: #CB4F51;padding: 10px;display: block}
+        .my_p{font-size:30px;}
+    </style>
+    <!--引用jquery库-->
+    <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+<h3>这是一个简单的点击效果</h3>
+<div class="aaa">
+    点击我
+</div>
+
+<br>
+
+<form>
+    <input type="button" onclick="login()" value="ajax提交">
+</form>
+
+<p class="my_p">我是谁</p>
+
+姓名：<input name="name"/><br> <br>
+
+<input type="radio" name="fruit" value="apple">苹果</input><br/>
+<input type="radio" name="fruit" value="pear">梨子</input><br/>
+<input type="radio" name="fruit" value="orange">桔子</input><br/>
+
+<br>
+<select id="ms" name="my_select" multiple="multiple">
+    <option>单选1</option>
+    <option selected>单选2</option>
+    <option>单选3</option>
+</select>
+
+
+<br><br><br>
+<input type="checkbox" name="shoes" value="black" /> 简单的黑色 <br/>
+<input type="checkbox" name="shoes" value="white" /> 简单的白色 <br/>
+<input type="checkbox" name="shoes" value="gray" /> 灰色阴影 <br/>
+<input type="checkbox" name="shoes" value="black&white"/> 黑色和白色<br/>
+
+<br/>
+<table border=1 id="my_table">
+    <!--<caption> 表格标题 </caption>-->
+    <tr>
+        <th>表头1</th>
+        <th>表头2</th>
+        <th>表头3</th>
+    </tr>
+    <tr>
+        <td>row_1, colmn_1</td>
+        <td>row_1, colmn_2</td>
+        <td>row_1, colmn_3</td>
+    </tr>
+    <tr>
+        <td>row_2, colmn_1</td>
+        <td>row_2, colmn_2</td>
+        <td>row_2, colmn_3</td>
+    </tr>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //点击
+        $(".aaa").click(function(){
+            //alert("你好！");
+
+            //alert($(".my_p").text());
+            //获取选择的radio的值
+            //alert($("input[name='fruit']checked").val());
+
+            //获取选择的radio的值
+            //alert($("select[name='my_select']").val());
+            //alert($("#ms").val());
+
+            //alert($("input[name='name']").val());
+
+            // alert($("input[name='shoes']").val());
+
+            alert($("#my_table tr:eq(0) th").eq(0).text());
+
+            //alert($("#my_table tr:eq(1) td").eq(0).text());
+
+            //alert($("#my_table tr:eq(1) td").eq(1).text());
+
+            //alert($("#my_table tr:eq(2) td").eq(2).text());
+        });
+
+        //悬停到目标上
+        $(".aaa").mouseover(function(){
+            $(this).css("background-color","#0060ff");
+        });
+
+        //悬停离开
+        $(".aaa").mouseout(function(){
+            $(this).css("background-color","#CB4F51");
+        });
+
+
+        function login() {
+            $.ajax({
+                type: "POST",
+                url: "/test/ajax" ,
+                dataType: "json",//服务器返回的数据类型
+                contentType: "application/json",//post请求的信息格式
+                data: "name=John&location=Boston",
+                success: function(msg){
+                    alert( "return : " + msg );
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

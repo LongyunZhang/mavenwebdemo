@@ -20,4 +20,11 @@ public class TestController {
     public String returnString() {
         return "hello return string 这是中文，并没有乱码";
     }
+
+    @RequestMapping(value = "ajax", produces = {"text/plain;charset=UTF-8"})
+    //produces用于解决返回中文乱码问题，application/json;为json解决中文乱码
+    @ResponseBody
+    public String ajax() {
+        return "{\"name\":\"张三\", \"age\":10}";
+    }
 }
