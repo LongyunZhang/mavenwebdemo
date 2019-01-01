@@ -24,7 +24,7 @@ public class MessageSenderTest {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-sender.xml");
         MessageSender messageSender = ctx.getBean("messageSender", MessageSender.class);
         for (int i = 0; i < 148; i++) {
-            Map<String, Object> content = new HashMap<>();
+            Map<String, Object> content = new HashMap<String, Object>();
             content.put("name", "caobug");
             content.put("age", i);
             content.put("will", "say hello");
